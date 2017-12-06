@@ -1,0 +1,334 @@
+node n1 {
+    type router
+    model host
+    network-config {
+	hostname n1
+	!
+	interface eth0
+	 ip address 10.0.60.20/24
+	!
+    }
+    canvas c1
+    iconcoords {58.0 313.0}
+    labelcoords {58.0 345.0}
+    interface-peer {eth0 n12}
+}
+
+node n2 {
+    type router
+    model PC
+    network-config {
+	hostname n2
+	!
+	interface eth0
+	 ip address 10.0.5.20/24
+	!
+    }
+    canvas c1
+    iconcoords {827.0 213.0}
+    labelcoords {827.0 245.0}
+    interface-peer {eth0 n13}
+}
+
+node n3 {
+    type router
+    model PC
+    network-config {
+	hostname n3
+	!
+	interface eth0
+	 ip address 10.0.6.20/24
+	!
+    }
+    canvas c1
+    iconcoords {839.0 304.0}
+    labelcoords {839.0 336.0}
+    interface-peer {eth0 n13}
+}
+
+node n4 {
+    type router
+    model PC
+    network-config {
+	hostname n4
+	!
+	interface eth0
+	 ip address 10.0.7.20/24
+	!
+    }
+    canvas c1
+    iconcoords {846.0 386.0}
+    labelcoords {846.0 418.0}
+    interface-peer {eth0 n13}
+}
+
+node n5 {
+    type router
+    model PC
+    network-config {
+	hostname n5
+	!
+	interface eth0
+	 ip address 10.0.8.20/24
+	!
+    }
+    canvas c1
+    iconcoords {820.0 474.0}
+    labelcoords {820.0 506.0}
+    interface-peer {eth0 n13}
+}
+
+node n6 {
+    type router
+    model PC
+    network-config {
+	hostname n6
+	!
+	interface eth0
+	 ip address 10.0.9.20/24
+	!
+    }
+    canvas c1
+    iconcoords {750.0 586.0}
+    labelcoords {750.0 618.0}
+    interface-peer {eth0 n13}
+}
+
+node n7 {
+    type router
+    model PC
+    network-config {
+	hostname n7
+	!
+	interface eth0
+	 ip address 10.0.10.20/24
+	!
+    }
+    canvas c1
+    iconcoords {608.0 605.0}
+    labelcoords {608.0 637.0}
+    interface-peer {eth0 n13}
+}
+
+node n8 {
+    type router
+    model PC
+    network-config {
+	hostname n8
+	!
+	interface eth0
+	 ip address 10.0.11.20/24
+	!
+    }
+    canvas c1
+    iconcoords {490.0 541.0}
+    labelcoords {490.0 573.0}
+    interface-peer {eth0 n13}
+}
+
+node n9 {
+    type router
+    model PC
+    network-config {
+	hostname n9
+	!
+	interface eth0
+	 ip address 10.0.4.20/24
+	!
+    }
+    canvas c1
+    iconcoords {770.0 116.0}
+    labelcoords {770.0 148.0}
+    interface-peer {eth0 n13}
+}
+
+node n10 {
+    type router
+    model PC
+    network-config {
+	hostname n10
+	!
+	interface eth0
+	 ip address 10.0.3.20/24
+	!
+    }
+    canvas c1
+    iconcoords {636.0 76.0}
+    labelcoords {636.0 108.0}
+    interface-peer {eth0 n13}
+}
+
+node n11 {
+    type router
+    model PC
+    network-config {
+	hostname n11
+	!
+	interface eth0
+	 ip address 10.0.2.20/24
+	!
+    }
+    canvas c1
+    iconcoords {484.0 108.0}
+    labelcoords {484.0 140.0}
+    interface-peer {eth0 n13}
+}
+
+node n12 {
+    type router
+    model router
+    network-config {
+	hostname n12
+	!
+	interface eth0
+	 ip address 10.0.60.1/24
+	!
+	interface eth1
+	 ip address 10.0.1.1/24
+	!
+    }
+    canvas c1
+    iconcoords {282.0 329.0}
+    labelcoords {282.0 361.0}
+    interface-peer {eth0 n1}
+    interface-peer {eth1 n13}
+    services {zebra RIP vtysh IPForward DHCP}
+}
+
+node n13 {
+    type router
+    model router
+    network-config {
+	hostname n13
+	!
+	interface eth9
+	 ip address 10.0.10.1/24
+	!
+	interface eth8
+	 ip address 10.0.9.1/24
+	!
+	interface eth7
+	 ip address 10.0.8.1/24
+	!
+	interface eth6
+	 ip address 10.0.7.1/24
+	!
+	interface eth5
+	 ip address 10.0.6.1/24
+	!
+	interface eth4
+	 ip address 10.0.5.1/24
+	!
+	interface eth3
+	 ip address 10.0.4.1/24
+	!
+	interface eth2
+	 ip address 10.0.3.1/24
+	!
+	interface eth10
+	 ip address 10.0.11.1/24
+	!
+	interface eth1
+	 ip address 10.0.2.1/24
+	!
+	interface eth0
+	 ip address 10.0.1.2/24
+	!
+    }
+    canvas c1
+    iconcoords {511.0 318.0}
+    labelcoords {511.0 350.0}
+    interface-peer {eth0 n12}
+    interface-peer {eth1 n11}
+    interface-peer {eth2 n10}
+    interface-peer {eth3 n9}
+    interface-peer {eth4 n2}
+    interface-peer {eth5 n3}
+    interface-peer {eth6 n4}
+    interface-peer {eth7 n5}
+    interface-peer {eth8 n6}
+    interface-peer {eth9 n7}
+    interface-peer {eth10 n8}
+    services {zebra RIP vtysh IPForward DHCP}
+}
+
+link l1 {
+    nodes {n12 n1}
+    bandwidth 0
+}
+
+link l2 {
+    nodes {n12 n13}
+    bandwidth 0
+}
+
+link l3 {
+    nodes {n13 n11}
+    bandwidth 0
+}
+
+link l4 {
+    nodes {n13 n10}
+    bandwidth 0
+}
+
+link l5 {
+    nodes {n13 n9}
+    bandwidth 0
+}
+
+link l6 {
+    nodes {n13 n2}
+    bandwidth 0
+}
+
+link l7 {
+    nodes {n13 n3}
+    bandwidth 0
+}
+
+link l8 {
+    nodes {n13 n4}
+    bandwidth 0
+}
+
+link l9 {
+    nodes {n13 n5}
+    bandwidth 0
+}
+
+link l10 {
+    nodes {n13 n6}
+    bandwidth 0
+}
+
+link l11 {
+    nodes {n13 n7}
+    bandwidth 0
+}
+
+link l12 {
+    nodes {n13 n8}
+    bandwidth 0
+}
+
+canvas c1 {
+    name {Canvas1}
+}
+
+option global {
+    interface_names no
+    ip_addresses yes
+    ipv6_addresses yes
+    node_labels yes
+    link_labels yes
+    show_api no
+    background_images no
+    annotations yes
+    grid yes
+    traffic_start 0
+}
+
+option session {
+}
+
