@@ -1,0 +1,64 @@
+
+
+from random import uniform
+import socket
+import time
+import threading
+import pandas as pd
+import sys
+import os.path
+
+class Cliente():
+	def __init__(self):
+		self.HOST = '10.0.60.20'
+		self.PORT = 5000            # Porta que o Servidor esta
+		self.udp = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+		self.dest = (self.HOST, self.PORT)
+		self.lista = []
+		self.tempoinicial = "";
+	def enviar(self,msg):
+		self.udp.sendto(msg,self.dest)
+
+	def receber(self):
+			cont=0
+			for i in range(500):
+				cont+=1
+				msg, servidor = self.udp.recvfrom(2024)
+				tempofinal=time.time()*1000
+				atraso=tempofinal - self.tempoinicial
+				self.lista.append(atraso)
+			print (cont)
+tamanhopacotes=['1000','1500','2000']
+intervalos=['0.01','0.02']
+teste=True
+for a in tamanhopacotes:
+	for b in intervalos:
+		intervalo = b
+		tamanhopacote = a
+		if tamanhopacote == '1000':
+			pacote="afbiasubaifubiasubfiausbfiuasbfiuasbifuasbifuasbiufbasifubasasfbiausbfiausbfuisabibaisfbiasufbiausbfiuasbfiausbfiuasbfiuabfiuasbfiuabsfiuasfahfbafbjahbfajsbajsbhkajsfbajkshbjfashbfjasbasjkhbfajskhfbajkshfbakjsfbhaksjfabskjfabhsfjkasbhkfjasbhfkajshfbakjsfhbaksjfhbaksjfhbaksjfabhsfjkasfbhkajsfbhaksjfhbaskjfashaifnaisufbaiusbfaiusfhiausfaifbajksfablksfjabsfaiosufasoiufhaoisfbaifbasofiuasbfoaisufbaosfiuabsofiuabsfoaisufbaoisufbaosifubaosfiuabsfoaiusfbaosiufbaoifubaofiuasbfafbiasubaifubiasubfiausbfiuasbfiuasbifuasbifuasbiufbasifubasasfbiausbfiausbfuisabibaisfbiasufbiausbfiuasbfiausbfiuasbfiuabfiuasbfiuabsfiuasfahfbafbjahbfajsbajsbhkajsfbajkshbjfashbfjasbasjkhbfajskhfbajkshfbakjsfbhaksjfabskjfabhsfjkasbhkfjasbhfkajshfbakjsfhbaksjfhbaksjfhbaksjfabhsfjkasfbhkajsfbhaksjfhbaskjfashaifnaisufbaiusbfaiusfhiausfaifbajksfablksfjabsfaiosufasoiufhaoisfbaifbasofiuasbfoaisufbaosfiuabsofiuabsfoaisufbaoisufbaosifubaosfiuabsfoaiusfbaosiufbaoifubaofiuasbfAAaaaaaaaaaaaaaaa"
+		elif tamanhopacote == '1500':
+			pacote="afbiasubaifubiasubfiausbfiuasbfiuasbifuasbifuasbiufbasifubasasfbiausbfiausbfuisabibaisfbiasufbiausbfiuasbfiausbfiuasbfiuabfiuasbfiuabsfiuasfahfbafbjahbfajsbajsbhkajsfbajkshbjfashbfjasbasjkhbfajskhfbajkshfbakjsfbhaksjfabskjfabhsfjkasbhkfjasbhfkajshfbakjsfhbaksjfhbaksjfhbaksjfabhsfjkasfbhkajsfbhaksjfhbaskjfashaifnaisufbaiusbfaiusfhiausfaifbajksfablksfjabsfaiosufasoiufhaoisfbaifbasofiuasbfoaisufbaosfiuabsofiuabsfoaisufbaoisufbaosifubaosfiuabsfoaiusfbaosiufbaoifubaofiuasbfafbiasubaifubiasubfiausbfiuasbfiuasbifuasbifuasbiufbasifubasasfbiausbfiausbfuisabibaisfbiasufbiausbfiuasbfiausbfiuasbfiuabfiuasbfiuabsfiuasfahfbafbjahbfajsbajsbhkajsfbajkshbjfashbfjasbasjkhbfajskhfbajkshfbakjsfbhaksjfabskjfabhsfjkasbhkfjasbhfkajshfbakjsfhbaksjfhbaksjfhbaksjfabhsfjkasfbhkajsfbhaksjfhbaskjfashaifnaisufbaiusbfaiusfhiausfaifbajksfablksfjabsfaiosufasoiufhaoisfbaifbasofiuasbfoaisufbaosfiuabsofiuabsfoaisufbaoisufbaosifubaosfiuabsfoaiusfbaosiufbaoifubaofiuasbfAAaaaafbiasubaifubiasubfiausbfiuasbfiuasbifuasbifuasbiufbasifubasasfbiausbfiausbfuisabibaisfbiasufbiausbfiuasbfiausbfiuasbfiuabfiuasbfiuabsfiuasfahfbafbjahbfajsbajsbhkajsfbajkshbjfashbfjasbasjkhbfajskhfbajkshfbakjsfbhaksjfabskjfabhsfjkasbhkfjasbhfkajshfbakjsfhbaksjfhbaksjfhbaksjfabhsfjkasfbhkajsfbhaksjfhbaskjfashaifnaisufbaiusbfaiusfhiausfaifbajksfablksfjabsfaiosufasoiufhaoisfbaifbasofiuasbfoaisufbaosfiuabsofiuabsfoaisufbaoisufbaosifubaosfiuabsfoaiusfbaosiufbaoifubaofiuasbfafbiasubaifubsuadhiuasaaaaaaaaaaaaaaaaa"
+		else:
+			pacote="afbiasubaifubiasubfiausbfiuasbfiuasbifuasbifuasbiufbasifubasasfbiausbfiausbfuisabibaisfbiasufbiausbfiuasbfiausbfiuasbfiuabfiuasbfiuabsfiuasfahfbafbjahbfajsbajsbhkajsfbajkshbjfashbfjasbasjkhbfajskhfbajkshfbakjsfbhaksjfabskjfabhsfjkasbhkfjasbhfkajshfbakjsfhbaksjfhbaksjfhbaksjfabhsfjkasfbhkajsfbhaksjfhbaskjfashaifnaisufbaiusbfaiusfhiausfaifbajksfablksfjabsfaiosufasoiufhaoisfbaifbasofiuasbfoaisufbaosfiuabsofiuabsfoaisufbaoisufbaosifubaosfiuabsfoaiusfbaosiufbaoifubaofiuasbfafbiasubaifubiasubfiausbfiuasbfiuasbifuasbifuasbiufbasifubasasfbiausbfiausbfuisabibaisfbiasufbiausbfiuasbfiausbfiuasbfiuabfiuasbfiuabsfiuasfahfbafbjahbfajsbajsbhkajsfbajkshbjfashbfjasbasjkhbfajskhfbajkshfbakjsfbhaksjfabskjfabhsfjkasbhkfjasbhfkajshfbakjsfhbaksjfhbaksjfhbaksjfabhsfjkasfbhkajsfbhaksjfhbaskjfashaifnaisufbaiusbfaiusfhiausfaifbajksfablksfjabsfaiosufasoiufhaoisfbaifbasofiuasbfoaisufbaosfiuabsofiuabsfoaisufbaoisufbaosifubaosfiuabsfoaiusfbaosiufbaoifubaofiuasbfAAaaaafbiasubaifubiasubfiausbfiuasbfiuasbifuasbifuasbiufbasifubasasfbiausbfiausbfuisabibaisfbiasufbiausbfiuasbfiausbfiuasbfiuabfiuasbfiuabsfiuasfahfbafbjahbfajsbajsbhkajsfbajkshbjfashbfjasbasjkhbfajskhfbajkshfbakjsfbhaksjfabskjfabhsfjkasbhkfjasbhfkajshfbakjsfhbaksjfhbaksjfhbaksjfabhsfjkasfbhkajsfbhaksjfhbaskjfashaifnaisufbaiusbfaiusfhiausfaifbajksfablksfjabsfaiosufasoiufhaoisfbaifbasofiuasbfoaisufbaosfiuabsofiuabsfoaisufbaoisufbaosifubaosfiuabsfoaiusfbaosiufbaoifubaofiuasbfafbiasubaifubiasubfiausbfiuasbfiuasbifuasbifuasbiufbasifubasasfbiausbfiausbfuisabibaisfbiasufbiausbfiuasbfiausbfiuasbfiuabfiuasbfiuabsfiuasfahfbafbjahbfajsbajsbhkajsfbajkshbjfashbfjasbasjkhbfajskhfbajkshfbakjsfbhaksjfabskjfabhsfjkasbhkfjasbhfkajshfbakjsfhbaksjfhbaksjfhbaksjfabhsfjkasfbhkajsfbhaksjfhbaskjfashaifnaisufbaiusbfaiusfhiausfaifbajksfablksfjabsfaiosufasoiufhaoisfbaifbasofiuasbfoaisufbaosfiuabsofiuabsfoaisufbaoisufbaosifubaosfiuabsfoaiusfbaosiufbaoifubaofiuasbfAAaaaaduahisduhasadasdaiusdhiasuakjsbdasbdajksbddkajsbaaaaaaaaaaaa"
+		pacote=str.encode(pacote)
+		c = Cliente()
+		for d in range(30):
+			threading.Thread(target=c.receber).start()			
+			if teste:
+				while True:
+					timestart = time.strftime('%H:%M:%S')
+					if timestart == '01:40:00':
+						time.sleep(uniform(0,2))
+						teste=False
+						break
+			for e in range(500):
+				time.sleep(float(intervalo))
+				c.tempoinicial=time.time() * 1000
+				c.enviar(pacote)
+			df = pd.DataFrame(c.lista)
+			print (df.mean())	
+			media=float(df.mean())
+			arq = open('/home/bolsa/Documentos/TrabalhoDesempenhoCore/IPv4/rnp/10/'+str(intervalo)+' - '+str(tamanhopacote)+'.csv', 'a')
+			arq.write(str(media)+'\n')
+			arq.close()
